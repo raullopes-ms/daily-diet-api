@@ -32,6 +32,11 @@ jobs:
 
       - run: npm ci
 
+      - name: Generate Prisma Client
+        run: npx prisma generate
+        env:
+          DATABASE_URL: "postgresql://docker:docker@localhost:5432/diet?schema=public"
+
       - run: npm run test:e2e
         env:
           JWT_SECRET: testing
