@@ -32,7 +32,7 @@ export async function authenticate(
     });
   } catch (error) {
     if (error instanceof InvalidCredentialsError) {
-      return reply.status(409).send({ message: error.message });
+      return reply.status(401).send({ message: error.message });
     }
     if (error instanceof UnauthorizedError) {
       return reply.status(403).send({ message: error.message });

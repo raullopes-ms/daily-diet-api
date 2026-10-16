@@ -16,14 +16,14 @@ export async function createMeal(request: FastifyRequest, reply: FastifyReply) {
   );
   try {
     const createMealUseCase = makeCreateMealUseCase();
-    const { meal } = await createMealUseCase.execute({
+    await createMealUseCase.execute({
       title,
       description,
       isOnDiet,
       date,
       userId: request.user.sub,
     });
-    return reply.status(201).send({ meal });
+    return reply.status(201).send();
   } catch (error) {
     if (error instanceof ResourceNotFound) {
       return reply.status(404).send({ message: error.message });

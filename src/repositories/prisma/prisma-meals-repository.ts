@@ -15,6 +15,11 @@ export class PrismaMealsRepository implements MealsRepository {
     });
     return result.count > 0;
   }
+  async findByIdAndUserId(id: number, userId: string) {
+    return prisma.meal.findFirst({
+      where: { id, userId },
+    });
+  }
   async findManyByUserId(userId: string, isOnDiet?: boolean) {
     return prisma.meal.findMany({
       where: {
